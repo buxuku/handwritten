@@ -1,0 +1,48 @@
+#! /usr/bin/env node
+
+const program = require("commander")
+const chalk = require("chalk")
+const config = require("./config");
+const Server = require("../src/server")
+
+program.name('linxiaodong-http-server');
+const usageList = [];
+
+// 输出帮助信息
+program.on('--help', function () {
+    console.log('ecample: \r\n');
+    usageList.forEach(line => {
+        console.log(`${chalk.green(line)}`);
+    })
+})
+
+const defaultConfig = {};
+
+Object.entries(config).forEach(([key, value]) => {
+    defaultConfig[key] = value.default;
+    usageList.push(value.usage);
+    program.option(value.options, value.descriptor);
+})
+program.parse(process.argv);
+
+/**
+ * 从所有的传递参数中，提供默认配置支持的参数进行合并
+ * @param defaultConfig 默认配置参数
+ * @param newConfig program传递的参数
+ * @returns {{}}
+ */
+function mergeOptions(defaultConfig, newConfig) {
+    const options = {};
+    for (let key in defaultConfig) {
+        if (!(key in newConfig)) {
+            options[key] = defaultConfig[key];
+        } else {
+            options[key] = newConfig[key];
+        }
+    }
+    return options
+}
+
+let options = mergeOptions(defaultConfig, program)
+let server = new Server(options);
+server.start();
