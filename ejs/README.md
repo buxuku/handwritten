@@ -51,6 +51,7 @@ html+=`
 </html>`}
 ```
 
+然后通过`new Function`的方式来执行该字符串即可。
 
 ```js
 const fs = require('fs').promises;
