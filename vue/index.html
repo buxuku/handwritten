@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script src="./dist/umd/vue.js"></script>
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data: {name: 'test', age: 10, info: {card: 123}, list: [1,2,3,4, {title: 'title'}]},
+        })
+        vm._data.list.push({province: 'sichuan'});
+        vm._data.info.card = 456;
+        console.log('vue', vm);
+    </script>
+</body>
+</html>
