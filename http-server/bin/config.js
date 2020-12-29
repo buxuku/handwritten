@@ -3,19 +3,19 @@ const config = {
         options: '-p, --port <n>',
         descriptor: 'set custom port, default: 8080',
         default: 8080,
-        usage: 'lxd-server --port <n>'
+        usage: 'simple-server --port <n>'
     },
     'directory': {
         options: '-d,--directory <n>',
         descriptor: 'set custom directory, default: process.cwd()',
         default:process.cwd(),
-        usage: 'lxd-server --directory <n>'
+        usage: 'simple-server --directory <n>'
     },
     'cache':{
         options: '-c,--cache <n>',
         descriptor: 'set cache control, default: no-cache',
         default: 'no-cache',
-        usage: 'lxd-server --cache <n>'
+        usage: 'simple-server --cache <n>'
     }
 }
 module.exports = config;
